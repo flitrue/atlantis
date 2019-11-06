@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
+import { isArray } from 'lodash'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
@@ -80,5 +81,51 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+function firstLetterUpper(str = '') {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+export class RESTful {
+  constructor(uri, name) {
+    this.uri = uri
+    this.name = name
+  }
+  uri = ''
+  name = ''
+  defaultOptions(options = {}, type = 'get') {
+    return {
+      pureData: true,
+      name: type + firstLetterUpper(this.name),
+      ...options
+    }
+  }
+  get(options) {
+    return service.get(this.uri, this.defaultOptions(options))
+  }
+  create(data, options) {
+    return service.post(this.uri, data, this.defaultOptions(options, 'create'))
+  }
+  save(data, options = {}) {
+    const type = options.patch ? 'patch' : 'put'
+    return service[type](
+      `${this.uri}/${data.id}`,
+      data,
+      this.defaultOptions(options, 'update')
+    )
+  }
+  delete(id, options) {
+    if (isArray(id)) {
+      return service.delete(this.uri, {
+        params: { ids: id },
+        ...this.defaultOptions(options, 'delete')
+      })
+    }
+    return service.delete(
+      `${this.uri}/id`,
+      this.defaultOptions(options, 'delete')
+    )
+  }
+}
 
 export default service
