@@ -98,43 +98,113 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/permission',
+    path: '/basic',
     component: Layout,
-    redirect: '/permission/page',
+    redirect: 'basic/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/basic/index.vue'),
+        name: 'Basic',
+        meta: { title: 'basic', icon: 'dashboard', noCache: true }
+      }
+    ]
+  },
+
+  {
+    path: '/dictionary',
+    component: Layout,
+    redirect: 'dictionary/busness',
     alwaysShow: true, // will always show the root menu
-    name: 'Permission',
+    name: 'Dictionary',
     meta: {
-      title: 'permission',
+      title: 'dictionary',
       icon: 'lock',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
       {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'pagePermission',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
+        path: 'busness',
+        component: () => import('@/views/dictionary/busnessType/index.vue'),
+        name: 'busness',
+        meta: { title: 'busness', icon: 'dashboard', noCache: true }
       },
       {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'directivePermission'
-          // if do not set roles, means: this page does not require permission
-        }
+        path: 'engine',
+        component: () => import('@/views/dictionary/engineType/index.vue'),
+        name: 'engine',
+        meta: { title: 'engine', icon: 'dashboard', noCache: true }
       },
       {
-        path: 'role',
-        component: () => import('@/views/permission/role'),
-        name: 'RolePermission',
-        meta: {
-          title: 'rolePermission',
-          roles: ['admin']
-        }
+        path: 'store',
+        component: () => import('@/views/dictionary/storeType/index.vue'),
+        name: 'store',
+        meta: { title: 'store', icon: 'dashboard', noCache: true }
+      },
+      {
+        path: 'work',
+        component: () => import('@/views/dictionary/workType/index.vue'),
+        name: 'work',
+        meta: { title: 'work', icon: 'dashboard', noCache: true }
+      }
+    ]
+  },
+
+  {
+    path: '/home',
+    component: Layout,
+    redirect: 'home/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/homePage/index.vue'),
+        name: 'Home',
+        meta: { title: 'home', icon: 'dashboard', noCache: true }
+      }
+    ]
+  },
+
+  {
+    path: '/system',
+    component: Layout,
+    redirect: 'system/group',
+    alwaysShow: true, // will always show the root menu
+    name: 'System',
+    meta: {
+      title: 'system',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'group',
+        component: () => import('@/views/system/group/index.vue'),
+        name: 'Group',
+        meta: { title: 'busness', icon: 'dashboard', noCache: true }
+      },
+      {
+        path: 'menu',
+        component: () => import('@/views/system/menu/index.vue'),
+        name: 'menu',
+        meta: { title: 'menu', icon: 'dashboard', noCache: true }
+      },
+      {
+        path: 'permission',
+        component: () => import('@/views/system/permission/index.vue'),
+        name: 'permission',
+        meta: { title: 'permission', icon: 'dashboard', noCache: true }
+      },
+      {
+        path: 'category',
+        component: () => import('@/views/system/testCategory/index.vue'),
+        name: 'category',
+        meta: { title: 'category', icon: 'dashboard', noCache: true }
+      },
+      {
+        path: 'work',
+        component: () => import('@/views/system/user/index.vue'),
+        name: 'user',
+        meta: { title: 'user', icon: 'dashboard', noCache: true }
       }
     ]
   },
