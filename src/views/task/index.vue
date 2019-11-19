@@ -247,7 +247,7 @@ import { getList, deleteTask, timingTaskCancel } from '@/api/task'
 import Pagination from '@/components/Pagination'
 import GroupSelect from '@/components/GroupSelect'
 import SelExecDialog from './SelExecDialog'
-import Category from '../atlantis/homePage/components/category'
+import Category from '../homePage/components/category'
 
 export default {
   components: {
