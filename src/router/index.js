@@ -6,6 +6,9 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 
+/* Router Modules */
+import taskRouter from './modules/task'
+
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -209,50 +212,51 @@ export const asyncRoutes = [
     ]
   },
 
-  {
-    path: '/task',
-    component: Layout,
-    redirect: 'index',
-    alwaysShow: true,
-    name: 'Task',
-    meta: {
-      title: 'task',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/task/index.vue'),
-        name: 'index',
-        meta: { title: 'index', icon: 'dashboard', noCache: true }
-      },
-      {
-        path: 'case-list',
-        component: () => import('@/views/task/caseList.vue'),
-        name: 'caseList',
-        meta: { title: 'caseList', icon: 'dashboard', noCache: true }
-      },
-      // {
-      //   path: 'edit-step',
-      //   component: () => import('@/views/task/editStep.vue'),
-      //   name: 'editStep',
-      //   meta: { title: 'editStep', icon: 'dashboard', noCache: true }
-      // },
-      {
-        path: 'jsondate',
-        component: () => import('@/views/task/jsondate.vue'),
-        name: 'jsondate',
-        meta: { title: 'jsondate', icon: 'dashboard', noCache: true }
-      },
-      {
-        path: 'selexcedialog',
-        component: () => import('@/views/task/SelExecDialog.vue'),
-        name: 'SelExecDialog',
-        meta: { title: 'SelExecDialog', icon: 'dashboard', noCache: true }
-      }
-    ]
-  },
+  taskRouter,
+  // {
+  //   path: '/task',
+  //   component: Layout,
+  //   redirect: 'index',
+  //   alwaysShow: true,
+  //   name: 'Task',
+  //   meta: {
+  //     title: 'task',
+  //     icon: 'lock',
+  //     roles: ['admin', 'editor'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/task/index.vue'),
+  //       name: 'index',
+  //       meta: { title: 'index', icon: 'dashboard', noCache: true }
+  //     },
+  //     {
+  //       path: 'case-list',
+  //       component: () => import('@/views/task/caseList.vue'),
+  //       name: 'caseList',
+  //       meta: { title: 'caseList', icon: 'dashboard', noCache: true }
+  //     },
+  //     // {
+  //     //   path: 'edit-step',
+  //     //   component: () => import('@/views/task/editStep.vue'),
+  //     //   name: 'editStep',
+  //     //   meta: { title: 'editStep', icon: 'dashboard', noCache: true }
+  //     // },
+  //     {
+  //       path: 'jsondate',
+  //       component: () => import('@/views/task/jsondate.vue'),
+  //       name: 'jsondate',
+  //       meta: { title: 'jsondate', icon: 'dashboard', noCache: true }
+  //     },
+  //     {
+  //       path: 'selexcedialog',
+  //       component: () => import('@/views/task/SelExecDialog.vue'),
+  //       name: 'SelExecDialog',
+  //       meta: { title: 'SelExecDialog', icon: 'dashboard', noCache: true }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/error',

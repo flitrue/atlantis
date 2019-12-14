@@ -231,6 +231,7 @@ import editTaskStep from './editStep.vue'
 import caseList from './caseList.vue'
 import CaseOperation from '@/views/common/caseOperation'
 import moment from 'moment'
+import _ from 'lodash'
 
 export default {
   components: {
